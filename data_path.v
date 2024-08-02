@@ -1,4 +1,4 @@
-module data_path 
+I. I. I module data_path 
 	(output reg [7:0] address,
 	 output reg [7:0] to_memory,
 	 output reg [7:0] IR_out,
@@ -38,26 +38,24 @@ module data_path
 			address = MAR; 
 		end
   
-	always @ (MAR_Load, address, Bus1)	
+	always @ (MAR_Load, address, Bus2)	
 		begin
 			if (MAR_Load) 
-				MAR = Bus1;
+				MAR = Bus2;
 			else
 				MAR = address;
 		end
 
-	always @ (IR_Load, from_memory, Bus2) 
+	always @ (IR_Load, Bus2) 
 		begin
 			if (IR_Load) 
-				IR_out = from_memory;
-			else
 				IR_out = Bus2;
 		end
 
-	always @ (PC_Load, PC, Bus1)
+	always @ (PC_Load, PC, Bus2)
 		begin
 			if (PC_Load) 
-				PC = Bus1;
+				PC = Bus2;
 			else
 				PC = PC;
 		end
