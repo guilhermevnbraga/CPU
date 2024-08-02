@@ -6,7 +6,7 @@ module rw_96x8_sync
 	 input wire       clk);
 	 
 	 reg[7:0] RW[128:223];
-	 wire EN;
+	 reg EN;
 	 
 	 always @ (address) 
 	 	begin
@@ -25,3 +25,5 @@ module rw_96x8_sync
 	 	end
 	 		
 endmodule
+
+
