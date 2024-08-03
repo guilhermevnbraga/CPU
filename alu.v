@@ -1,8 +1,8 @@
 `timescale 1ns/1ps
 
-module alub
+module alu
 	(output reg [7:0] Result,
-	output reg [3:0] NZVC, //Flags: Negative, Zero, Overflow, Carry
+	output reg [3:0] NZVC,
 	input wire [7:0] A, B,
 	input wire [2:0] ALU_Sel);
 
