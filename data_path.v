@@ -16,6 +16,8 @@ module data_path
 	reg [7:0] Bus1, Bus2;
 	reg [7:0] PC, MAR, A, B, ALU_Result;
 	reg [3:0] NZVC; // Registrador para os flags NZVC
+	wire [7:0] Result;
+	wire [3:0] flags;
 
 	// Mux para selecionar a entrada do Bus1
 	always @ (Bus1_Sel, PC, A, B) 
@@ -95,8 +97,8 @@ module data_path
 
 	// Instanciação da ALU
 	alu alu0 (
-		.ALU_Result(ALU_Result),
-		.NZVC(NZVC),
+		.Result(Result),
+		.NZVC(flags),
 		.A(A),
 		.B(B),
 		.ALU_Sel(ALU_Sel)
@@ -111,4 +113,7 @@ module data_path
 			CCR_Result <= NZVC;
 	end
 	
+	assign Result = ALU_Result;
+	assign flags = NZVC;
+
 endmodule

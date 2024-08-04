@@ -10,41 +10,41 @@ module rom_128x8_sync (
     // Feel free to add other
 
     // Loads and Stores
-    parameter LDA_IMM = 8'h86; // Load Register A (Immediate Addressing)
-    parameter LDA_DIR = 8'h87; // Load Register A from memory (RAM or IO) (Direct Addressing)
-    parameter LDB_IMM = 8'h88; // Load Register B (Immediate Addressing)
-    parameter LDB_DIR = 8'h89; // Load Register B from memory (RAM or IO) (Direct Addressing)
-    parameter STA_DIR = 8'h96; // Store Register A to memory (RAM or IO)
-    parameter STB_DIR = 8'h97; // Store Register B to memory (RAM or IO)
-    parameter STR_DIR = 8'h98; // Store Result of Operation to memory (RAM or IO)
+    parameter LDA_IMM = 8'h86, // Load Register A (Immediate Addressing)
+            LDA_DIR = 8'h87, // Load Register A from memory (RAM or IO) (Direct Addressing)
+            LDB_IMM = 8'h88, // Load Register B (Immediate Addressing)
+            LDB_DIR = 8'h89, // Load Register B from memory (RAM or IO) (Direct Addressing)
+            STA_DIR = 8'h96, // Store Register A to memory (RAM or IO)
+            STB_DIR = 8'h97, // Store Register B to memory (RAM or IO)
+            STR_DIR = 8'h98, // Store Result of Operation to memory (RAM or IO)
     
 
     // Data Manipulations, Connect reg A (B) to Input A (B) of ALU (Easier)
-    parameter ADD_AB  = 8'h42; // A <= A + B
-    parameter SUB_AB  = 8'h43; // A <= A - B
-    parameter AND_AB  = 8'h44; // A <= A & B
-    parameter OR_AB   = 8'h45; // A <= A | B
-    parameter INCA    = 8'h46; // A <= A + 1
-    parameter DECA    = 8'h48; // A <= A - 1
-    parameter XOR_AB  = 8'h4A; // A <= A ^ B
-    parameter NOTA    = 8'h4B; // A <= ~A
-    parameter INCB    = 8'h4C; // B <= B + 1
-    parameter DECB    = 8'h4D; // B <= B - 1
-    parameter NOTB    = 8'h4E; // B <= ~B
-    parameter SUB_BA  = 8'h4F; // B <= B - A
+            ADD_AB  = 8'h42, // A <= A + B
+            SUB_AB  = 8'h43, // A <= A - B
+            AND_AB  = 8'h44, // A <= A & B
+            OR_AB   = 8'h45, // A <= A | B
+            INCA    = 8'h46, // A <= A + 1
+            DECA    = 8'h48, // A <= A - 1
+            XOR_AB  = 8'h4A, // A <= A ^ B
+            NOTA    = 8'h4B, // A <= ~A
+            INCB    = 8'h4C, // B <= B + 1
+            DECB    = 8'h4D, // B <= B - 1
+            NOTB    = 8'h4E, // B <= ~B
+            SUB_BA  = 8'h4F, // B <= B - A
 
     // Feel free to include more like INCB, DECB, NOTB, SUB_BA etc
 
     // Branches
-    parameter BRA     = 8'h20; // Branch Always to (ROM) Address
-    parameter BMI     = 8'h21; // Branch if N == 1 to (ROM) Address
-    parameter BPL     = 8'h22; // Branch if N == 0 to (ROM) Address
-    parameter BEQ     = 8'h23; // Branch if Z == 1 to (ROM) Address
-    parameter BNE     = 8'h24; // Branch if Z == 0 to (ROM) Address
-    parameter BVS     = 8'h25; // Branch if V == 1 to (ROM) Address 
-    parameter BVC     = 8'h26; // Branch if V == 0 to (ROM) Address
-    parameter BCS     = 8'h27; // Branch if C == 1 to (ROM) Address
-    parameter BCC     = 8'h28; // Branch if C == 0 to (ROM) Address
+            BRA     = 8'h20, // Branch Always to (ROM) Address
+            BMI     = 8'h21, // Branch if N == 1 to (ROM) Address
+            BPL     = 8'h22, // Branch if N == 0 to (ROM) Address
+            BEQ     = 8'h23, // Branch if Z == 1 to (ROM) Address
+            BNE     = 8'h24, // Branch if Z == 0 to (ROM) Address
+            BVS     = 8'h25, // Branch if V == 1 to (ROM) Address 
+            BVC     = 8'h26, // Branch if V == 0 to (ROM) Address
+            BCS     = 8'h27, // Branch if C == 1 to (ROM) Address
+            BCC     = 8'h28; // Branch if C == 0 to (ROM) Address
 
     initial begin: PROGRAM_CODE
         // Nulificador de contas (torna o resultado de uma operação em 0)
