@@ -53,120 +53,40 @@ module data_path_tb;
         // Apply reset
         #10 Reset = 0;
 
-        // LDA_IMM - Load A with immediate value 07
-        from_memory = 8'h07;
-        IR_Load = 1;
+        // Load IR, PC, A, B
+        from_memory = 8'h45;
+        Bus2_Sel = 2'b10;
+        #20 IR_Load = 1;
         #10 IR_Load = 0;
-        A_Load = 1;
-        Bus2_Sel = 2'b10;
-        #10 A_Load = 0;
-        PC_Inc = 1;
-        #10 PC_Inc = 0;
-
-        // LDB_IMM - Load B with immediate value 09
-        from_memory = 8'h09;
-        IR_Load = 1;
-        #10 IR_Load = 0;
-        B_Load = 1;
-        Bus2_Sel = 2'b10;
-        #10 B_Load = 0;
-        PC_Inc = 1;
-        #10 PC_Inc = 0;
-
-        // SUB_AB - Subtract B from A (A = A - B)
-        ALU_Sel = 3'b010;
-        A_Load = 1;
-        Bus1_Sel = 2'b01;
-        Bus2_Sel = 2'b10;
-        #10 A_Load = 0;
-        PC_Inc = 1;
-        #10 PC_Inc = 0;
-
-        // STR_DIR - Store the result in a specific address
-        MAR_Load = 1;
-        from_memory = 8'h80;
-        IR_Load = 1;
-        #10 MAR_Load = 0;
-        IR_Load = 0;
-        #10 PC_Inc = 1;
-        #10 PC_Inc = 0;
-
-        // Check if the result is zero and branch if equal (BEQ)
-        if (CCR_Result[2]) begin
-            PC_Load = 1;
-            from_memory = 8'h14;
-            IR_Load = 1;
-            #10 PC_Load = 0;
-            IR_Load = 0;
-            PC_Inc = 1;
-            #10 PC_Inc = 0;
-        end
-
-        // Check if the result is negative and branch if minus (BMI)
-        else if (CCR_Result[3]) begin
-            PC_Load = 1;
-            from_memory = 8'h0D;
-            IR_Load = 1;
-            #10 PC_Load = 0;
-            IR_Load = 0;
-            PC_Inc = 1;
-            #10 PC_Inc = 0;
-        end
-
-        // If the result is positive, decrement A (DECA)
-        else begin
-            ALU_Sel = 3'b011;
-            A_Load = 1;
-            Bus1_Sel = 2'b01;
-            Bus2_Sel = 2'b10;
-            #10 A_Load = 0;
-            PC_Inc = 1;
-            #10 PC_Inc = 0;
-        end
-
-        // Loop back to store the decremented value
-        MAR_Load = 1;
-        from_memory = 8'h05;
-        IR_Load = 1;
-        #10 MAR_Load = 0;
-        IR_Load = 0;
-
-        // If negative, increment A (INCA)
-        ALU_Sel = 3'b001;
-        A_Load = 1;
-        Bus1_Sel = 2'b01;
-        Bus2_Sel = 2'b10;
-        #10 A_Load = 0;
-        PC_Inc = 1;
-        #10 PC_Inc = 0;
-
-        // Loop back to store the incremented value
-        MAR_Load = 1;
-        from_memory = 8'h05;
-        IR_Load = 1;
-        #10 MAR_Load = 0;
-        IR_Load = 0;
-
-        // Load the final value of A from memory
-        MAR_Load = 1;
-        from_memory = 8'h80;
-        IR_Load = 1;
-        #10 MAR_Load = 0;
-        IR_Load = 0;
-
-        // Store the final value in the output address
-        MAR_Load = 1;
-        from_memory = 8'hE0;
-        IR_Load = 1;
-        #10 MAR_Load = 0;
-        IR_Load = 0;
-
-        // Loop back to the start of the program
-        PC_Load = 1;
-        from_memory = 8'h00;
-        IR_Load = 1;
+        from_memory = 8'hE8;
+        #20 PC_Load = 1;
         #10 PC_Load = 0;
-        IR_Load = 0;
+        from_memory = 8'h18;
+        #20 A_Load = 1;
+        #10 A_Load = 0;
+        from_memory = 8'hBB;
+        #20 B_Load = 1;
+        #10 B_Load = 0;
+
+        // PC, A or B to memory
+        #20 Bus1_Sel = 01;
+        #30 Bus1_Sel = 10;
+
+        // ALU operations
+        #30 ALU_Sel = 3'b000; // A + B
+        CCR_Load = 1;
+        #10 CCR_Load = 0;
+        #30 ALU_Sel = 3'b010; // A - B
+        CCR_Load = 1;
+        #10 CCR_Load = 0;
+        #30 ALU_Sel = 3'b111; // ~A
+        CCR_Load = 1;
+        #10 CCR_Load = 0;
+
+        // Send Alu Result to address
+        Bus2_Sel = 2'b00;
+        MAR_Load = 1;
+        #10 MAR_Load = 0;
 
         // Finish simulation
         #1000 $finish;

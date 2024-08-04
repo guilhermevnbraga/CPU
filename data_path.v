@@ -83,7 +83,7 @@ module data_path
 		if (Reset)
 			A <= 8'b0;
 		else if (A_Load) 
-			A <= Bus1;
+			A <= Bus2;
 	end
 
 	// Carregamento do registrador B
@@ -92,7 +92,7 @@ module data_path
 		if (Reset)
 			B <= 8'b0;
 		else if (B_Load) 
-			B <= Bus1;
+			B <= Bus2;
 	end
 
 	// Instanciação da ALU
@@ -104,6 +104,12 @@ module data_path
 		.ALU_Sel(ALU_Sel)
 	);
 
+	always @ (Result or flags)
+	begin
+		ALU_Result = Result;
+		NZVC = flags;
+	end
+
 	// Atualização do registrador CCR
 	always @ (posedge Clk or posedge Reset)
 	begin
@@ -112,8 +118,5 @@ module data_path
 		else if (CCR_Load)
 			CCR_Result <= NZVC;
 	end
-	
-	assign Result = ALU_Result;
-	assign flags = NZVC;
 
 endmodule

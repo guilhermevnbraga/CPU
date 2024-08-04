@@ -54,38 +54,43 @@ module tb_control_unit;
 
     // Testa as instruções
     // Fetch
-    #10 IR = 8'h86; // LDA_IMM
-    #30 IR = 8'h87; // LDA_DIR
-    #30 IR = 8'h88; // LDB_IMM
-    #30 IR = 8'h89; // LDB_DIR
-    #30 IR = 8'h96; // STA_DIR
-    #30 IR = 8'h97; // STB_DIR
-    #30 IR = 8'h98; // STR_DIR
-    #30 IR = 8'h42; // ADD_AB
-    #30 IR = 8'h43; // SUB_AB
-    #30 IR = 8'h44; // AND_AB
-    #30 IR = 8'h45; // OR_AB
-    #30 IR = 8'h46; // INCA
-    #30 IR = 8'h48; // DECA
-    #30 IR = 8'h4A; // XOR_AB
-    #30 IR = 8'h47; // NOTA
-    #30 IR = 8'h49; // INCB
-    #30 IR = 8'h50; // DECB
-    #30 IR = 8'h51; // NOTB
-    #30 IR = 8'h52; // SUB_BA
+    while (IR_Load == 1 || MAR_Load == 1 || PC_Inc == 1)
+    begin
+      #1;
+    end
+    IR = 8'h98; // LDA_IMM
+    #70 IR = 8'h87; // LDA_DIR
+    #90 IR = 8'h88; // LDB_IMM
+    #70 IR = 8'h89; // LDB_DIR
+    #45 IR = 8'h96; // STA_DIR
+    #45 IR = 8'h97; // STB_DIR
+    #45 IR = 8'h98; // STR_DIR
+    #45 IR = 8'h42; // ADD_AB
+    #45 IR = 8'h43; // SUB_AB
+    #45 IR = 8'h44; // AND_AB
+    #45 IR = 8'h45; // OR_AB
+    #45 IR = 8'h46; // INCA
+    #45 IR = 8'h48; // DECA
+    #45 IR = 8'h4A; // XOR_AB
+    #45 IR = 8'h4B; // NOTA
+    #45 IR = 8'h4C; // INCB
+    #45 IR = 8'h4D; // DECB
+    #45 IR = 8'h4E; // NOTB
+    #45 IR = 8'h4F; // SUB_BA
 
     // Testa instruções de desvio com diferentes condições de CCR_Result
-    #30 IR = 8'h20; CCR_Result = 4'b0001; // BCS
-    #30 IR = 8'h20; CCR_Result = 4'b0000; // BCC
-    #30 IR = 8'h21; CCR_Result = 4'b0010; // BEQ
-    #30 IR = 8'h21; CCR_Result = 4'b0000; // BNE
-    #30 IR = 8'h22; CCR_Result = 4'b0100; // BMI
-    #30 IR = 8'h22; CCR_Result = 4'b0000; // BPL
-    #30 IR = 8'h23; CCR_Result = 4'b1000; // BVS
-    #30 IR = 8'h23; CCR_Result = 4'b0000; // BVC
+    #45 IR = 8'h20;// BRA
+    #45 IR = 8'h21; CCR_Result = 4'b1000; // BMI
+    #45 IR = 8'h22; CCR_Result = 4'b0000; // BPL
+    #45 IR = 8'h23; CCR_Result = 4'b0100; // BEQ
+    #45 IR = 8'h24; CCR_Result = 4'b0000; // BNE
+    #45 IR = 8'h25; CCR_Result = 4'b0010; // BVS
+    #45 IR = 8'h26; CCR_Result = 4'b0000; // BVC
+    #45 IR = 8'h27; CCR_Result = 4'b0001; // BCS
+    #45 IR = 8'h28; CCR_Result = 4'b0000; // BCC
 
     // Finaliza a simulação
-    #50 $finish;
+    $finish;
   end
 
 endmodule
