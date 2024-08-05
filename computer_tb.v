@@ -2,7 +2,7 @@
 `timescale 1ns/1ps
 `include "computer.v"
 
-module testbench;
+module computer_tb;
 
     // Declarar sinais para o módulo DUT (Device Under Test)
     reg [7:0] port_in_00, port_in_01, port_in_02, port_in_03, port_in_04, port_in_05, port_in_06, port_in_07;
@@ -84,7 +84,7 @@ module testbench;
         port_in_00 = 8'hAA;
         port_in_01 = 8'hBB;
         port_in_02 = 8'hCC;
-        port_in_03 = 8'hDD;
+        port_in_03 = 8'hDD; 
         port_in_04 = 8'hEE;
         port_in_05 = 8'hFF;
         port_in_06 = 8'h11;
@@ -93,13 +93,13 @@ module testbench;
         // Adicione mais testes conforme necessário
 
         // Finalizar simulação
-        #100 $finish;
+        #1465 $finish;
     end
 
     // Dump file para GTKWave
     initial begin
-        $dumpfile("dump.vcd");
-        $dumpvars(0, testbench);
+        $dumpfile("computer_tb.vcd");
+        $dumpvars(0, computer_tb);
     end
 
 endmodule

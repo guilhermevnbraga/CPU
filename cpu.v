@@ -55,8 +55,11 @@ module cpu (
 		.Reset(reset)
     );
 
-	assign mem_write = write;
-	assign addr = address;
-	assign to_mem = to_memory;
+	always @ (mem_write or addr or to_mem)
+	begin
+		write = mem_write;
+		address = addr;
+		to_memory = to_mem;
+	end
 
 endmodule

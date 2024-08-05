@@ -18,7 +18,7 @@ module rom_128x8_sync (
         ROM[5] = `STR_DIR;    // Armazena o resultado em um endereço da RAM
         ROM[6] = 8'h80;      // Endereço na RAM para armazenar o resultado
         ROM[7] = `BEQ;        // Se o resultado for zero, salta para End
-        ROM[8] = 8'h14;      // Endereço para salto (End)
+        ROM[8] = 8'h11;      // Endereço para salto (End)
         ROM[9] = `BMI;        // Se o resultado for negativo, salta para Neg
         ROM[10] = 8'h0D;     // Endereço para salto (Neg)
         ROM[11] = `DECA;      // Se o resultado for positivo, decrementa A

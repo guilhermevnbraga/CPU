@@ -693,7 +693,7 @@ parameter S0_FETCH = 0, S1_FETCH = 1, S2_FETCH = 2,
                         B_Load = 0;
                         ALU_Sel = 3'b000;
                         CCR_Load = 0;
-                        Bus1_Sel = 2'b01;
+                        Bus1_Sel = 2'b00;
                         Bus2_Sel = 2'b01;
                         write = 0;
                     end
@@ -724,7 +724,7 @@ parameter S0_FETCH = 0, S1_FETCH = 1, S2_FETCH = 2,
                         ALU_Sel = 3'b000;
                         CCR_Load = 0;
                         Bus1_Sel = 2'b01;
-                        Bus2_Sel = 2'b01;
+                        Bus2_Sel = 2'b10;
                         write = 0;
                     end
                 
@@ -735,10 +735,10 @@ parameter S0_FETCH = 0, S1_FETCH = 1, S2_FETCH = 2,
                         PC_Load = 0;
                         PC_Inc = 0;
                         A_Load = 0;
-                        B_Load = 0;
+                        B_Load = 1;
                         ALU_Sel = 3'b000;
                         CCR_Load = 0;
-                        Bus1_Sel = 2'b10;
+                        Bus1_Sel = 2'b01;
                         Bus2_Sel = 2'b01;
                         write = 1;
                     end

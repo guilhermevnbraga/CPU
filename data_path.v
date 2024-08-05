@@ -51,7 +51,7 @@ module data_path
 	// Carregamento do registrador MAR
 	always @ (posedge Clk or posedge Reset)	
 	begin
-		if (Reset)
+		if (!Reset)
 			MAR <= 8'b0;
 		else if (MAR_Load) 
 			MAR <= Bus2;
@@ -60,7 +60,7 @@ module data_path
 	// Carregamento do registrador IR
 	always @ (posedge Clk or posedge Reset) 
 	begin
-		if (Reset)
+		if (!Reset)
 			IR_out <= 8'b0;
 		else if (IR_Load) 
 			IR_out <= Bus2;
@@ -69,7 +69,7 @@ module data_path
 	// Carregamento e incremento do registrador PC
 	always @ (posedge Clk or posedge Reset)
 	begin
-		if (Reset)
+		if (!Reset)
 			PC <= 8'b0;
 		else if (PC_Load) 
 			PC <= Bus2;
@@ -80,7 +80,7 @@ module data_path
 	// Carregamento do registrador A
 	always @ (posedge Clk or posedge Reset)
 	begin
-		if (Reset)
+		if (!Reset)
 			A <= 8'b0;
 		else if (A_Load) 
 			A <= Bus2;
@@ -89,7 +89,7 @@ module data_path
 	// Carregamento do registrador B
 	always @ (posedge Clk or posedge Reset)
 	begin
-		if (Reset)
+		if (!Reset)
 			B <= 8'b0;
 		else if (B_Load) 
 			B <= Bus2;
@@ -113,7 +113,7 @@ module data_path
 	// Atualização do registrador CCR
 	always @ (posedge Clk or posedge Reset)
 	begin
-		if (Reset)
+		if (!Reset)
 			CCR_Result <= 4'b0000;
 		else if (CCR_Load)
 			CCR_Result <= NZVC;
