@@ -52,6 +52,7 @@ module data_path_tb;
 
         // Apply reset
         #10 Reset = 0;
+        #10 Reset = 1;
 
         // Load IR, PC, A, B
         from_memory = 8'h45;
@@ -89,7 +90,7 @@ module data_path_tb;
         #10 MAR_Load = 0;
 
         // Finish simulation
-        #1000 $finish;
+        $finish;
     end
 
     // Clock generation

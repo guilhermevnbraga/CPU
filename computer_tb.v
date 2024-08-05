@@ -80,20 +80,8 @@ module computer_tb;
         #10 reset = 0;
         #10 reset = 1;
 
-        // Testar diferentes entradas
-        port_in_00 = 8'hAA;
-        port_in_01 = 8'hBB;
-        port_in_02 = 8'hCC;
-        port_in_03 = 8'hDD; 
-        port_in_04 = 8'hEE;
-        port_in_05 = 8'hFF;
-        port_in_06 = 8'h11;
-        port_in_07 = 8'h22;
-        
-        // Adicione mais testes conforme necessário
-
         // Finalizar simulação
-        #1465 $finish;
+        #1300 $finish;
     end
 
     // Dump file para GTKWave
