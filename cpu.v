@@ -1,5 +1,5 @@
 `include "data_path.v"
-`include "control_unit.v"
+`include "control_unit2.v"
 
 module cpu (
     output reg [7:0] address,
